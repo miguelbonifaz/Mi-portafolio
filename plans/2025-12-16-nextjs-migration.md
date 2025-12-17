@@ -193,20 +193,25 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 
 ### Fase 6: Formulario de Contacto Funcional
 
-- [ ] Crear Server Action en `app/actions/contact.ts`:
-  - [ ] Validar datos con Zod
-  - [ ] Rate limiting simple (opcional)
-  - [ ] Retornar success/error states
-- [ ] Integrar servicio de email con **Mailtrap**:
-  - [ ] Instalar `nodemailer`
-  - [ ] Configurar credenciales de Mailtrap en `.env.local`
-  - [ ] Crear template de email
-- [ ] Actualizar componente Contact:
-  - [ ] Conectar formulario con Server Action
-  - [ ] Manejar estados loading/success/error
-  - [ ] Toast notifications (react-hot-toast)
-  - [ ] Reset form al enviar
-- [ ] Testing del formulario en desarrollo
+- [x] Crear Server Action en `app/actions/contact.ts`:
+  - [x] Validar datos con Zod
+  - [x] Rate limiting simple (5 mensajes por hora)
+  - [x] Retornar success/error states
+- [x] Integrar servicio de email con **Nodemailer**:
+  - [x] Configurar con Mailtrap (desarrollo)
+  - [x] Variables de entorno en `.env.local.example`
+  - [x] Template de email HTML profesional
+  - [x] Auto-reply al remitente
+- [x] Actualizar componente Contact:
+  - [x] Conectar formulario con Server Action usando useFormState
+  - [x] Manejar estados loading/success/error
+  - [x] Toast notifications (react-hot-toast)
+  - [x] Reset form al enviar exitosamente
+  - [x] Mostrar errores de validación por campo
+- [x] Testing del formulario:
+  - [x] Build exitoso sin errores
+  - [x] Validación de campos funcional
+  - [x] Estados de loading implementados
 
 ### Fase 7: Testing Local
 
