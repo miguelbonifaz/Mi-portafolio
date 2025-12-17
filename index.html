@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Miguel Bonifaz - Portafolio</title>
+    <title>Miguel Bonifaz - Desarrollador Laravel | Portafolio</title>
+    <meta name="description" content="Desarrollador Laravel con más de 5 años de experiencia. Especializado en Laravel, Vue.js, Livewire, Filament y automatizaciones con IA. Basado en Guayaquil, Ecuador." />
+    <meta name="keywords" content="Laravel Developer, PHP Developer, Vue.js, Livewire, Filament, Inertia.js, Desarrollo Web, Guayaquil, Ecuador" />
+    <meta name="author" content="Miguel Bonifaz" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://miguelbonifaz.dev/" />
+    <meta property="og:title" content="Miguel Bonifaz - Desarrollador Laravel" />
+    <meta property="og:description" content="Desarrollador Laravel con más de 5 años de experiencia. Especializado en Laravel, Vue.js, Livewire, Filament y automatizaciones con IA." />
+    <meta property="og:image" content="https://miguelbonifaz.dev/assets/images/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://miguelbonifaz.dev/" />
+    <meta property="twitter:title" content="Miguel Bonifaz - Desarrollador Laravel" />
+    <meta property="twitter:description" content="Desarrollador Laravel con más de 5 años de experiencia. Especializado en Laravel, Vue.js, Livewire, Filament y automatizaciones con IA." />
+    <meta property="twitter:image" content="https://miguelbonifaz.dev/assets/images/og-image.jpg" />
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;500&display=swap"
@@ -48,6 +66,11 @@
         color: white;
       }
 
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
       /* Responsive adjustments */
       @media (max-width: 768px) {
         .nav-items {
@@ -64,7 +87,7 @@
       <div class="font-bold text-black tracking-tight">Miguel Bonifaz</div>
 
       <nav class="hidden md:flex space-x-12 items-center">
-        <a href="#" class="hover:text-black transition-colors">Inicio</a>
+        <a href="#hero" class="hover:text-black transition-colors">Inicio</a>
         <a href="#about" class="hover:text-black transition-colors"
           >Acerca de</a
         >
@@ -95,6 +118,7 @@
     <main class="flex-grow w-full flex flex-col">
       <!-- Hero Section -->
       <section
+        id="hero"
         class="flex flex-col items-center justify-center text-center px-4 py-20 min-h-[80vh]"
       >
         <!-- Portrait Image Placeholder -->
@@ -423,10 +447,10 @@
               <!-- View More Button -->
               <div class="mt-20 flex justify-center">
                 <a
-                  href="#"
+                  href="automations.html"
                   class="group inline-flex items-center space-x-2 text-sm text-gray-600 hover:text-black transition-colors border-b border-gray-300 pb-1 hover:border-black"
                 >
-                  <span>Archivo y Todos los Proyectos</span>
+                  <span>Ver Automatizaciones</span>
                   <i
                     data-lucide="arrow-right"
                     class="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -517,7 +541,7 @@
                   </ul>
 
                   <a
-                    href="#"
+                    href="automations.html#agents"
                     class="inline-flex items-center text-xs uppercase tracking-widest text-black border-b border-black pb-1 hover:opacity-60 transition-opacity"
                   >
                     Ver Flujo Lógico
@@ -575,7 +599,7 @@
                   </ul>
 
                   <a
-                    href="#"
+                    href="automations.html#agents"
                     class="inline-flex items-center text-xs uppercase tracking-widest text-black border-b border-black pb-1 hover:opacity-60 transition-opacity"
                   >
                     Ver Flujo Lógico
