@@ -19,9 +19,9 @@ export default function About() {
                 {" "}
                 programación y el aprendizaje constante
               </span>
-              . Implemento testing en todos mis proyectos para permitir upgrades
-              seguros. Utilizo IA en mi flujo de trabajo para acelerar el
-              desarrollo.
+              . Aplico TDD y buenas prácticas para entregar proyectos
+              confiables y escalables. Aprendizaje continuo de nuevas
+              tecnologías manteniendo código limpio y bien estructurado.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-gray-100">

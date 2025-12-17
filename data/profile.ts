@@ -5,7 +5,7 @@ const profileData: Profile = {
   name: 'Zilver Rodriguez',
   title: 'Full-Stack Developer',
   bio: 'Desarrollador Full-Stack especializado en crear soluciones web modernas y eficientes. Con experiencia en Laravel, Vue.js, y tecnologías modernas, transformo ideas en aplicaciones funcionales y escalables.',
-  email: 'contacto@zilverdev.com',
+  email: 'miguelbonifaz126@gmail.com',
   phone: '+1234567890',
   location: 'Remote',
   image: '/assets/images/profile.jpg',
