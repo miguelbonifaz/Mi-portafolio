@@ -30,16 +30,16 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 ## Fases de Implementación
 
 ### Fase 1: Setup de Next.js 15
-- [ ] Crear nuevo proyecto Next.js 15 con App Router: `npx create-next-app@latest`
-- [ ] Configurar TypeScript (incluido en create-next-app)
-- [ ] Instalar y configurar TailwindCSS 4.x
-- [ ] Instalar dependencias adicionales:
-  - [ ] `zod` - Validación de schemas
-  - [ ] `lucide-react` - Iconos
-  - [ ] `react-hook-form` - Formularios
-  - [ ] `@hookform/resolvers` - Integración Zod + React Hook Form
-- [ ] Migrar fuentes (Space Mono, Playfair Display) usando `next/font/google`
-- [ ] Setup de estructura de carpetas:
+- [x] Crear nuevo proyecto Next.js 15 con App Router: `npx create-next-app@latest`
+- [x] Configurar TypeScript (incluido en create-next-app)
+- [x] Instalar y configurar TailwindCSS 4.x
+- [x] Instalar dependencias adicionales:
+  - [x] `zod` - Validación de schemas
+  - [x] `lucide-react` - Iconos
+  - [x] `react-hook-form` - Formularios
+  - [x] `@hookform/resolvers` - Integración Zod + React Hook Form
+- [x] Migrar fuentes (Space Mono, Playfair Display) usando `next/font/google`
+- [x] Setup de estructura de carpetas:
   ```
   app/
   ├── page.tsx                 # Homepage
