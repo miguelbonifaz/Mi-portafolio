@@ -188,13 +188,10 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
   - [ ] Validar datos con Zod
   - [ ] Rate limiting simple (opcional)
   - [ ] Retornar success/error states
-- [ ] Integrar servicio de email:
-  - **Opción 1: Resend** (recomendado, plan gratuito 3k/mes)
-    - [ ] Instalar `resend`
-    - [ ] Configurar API key en `.env.local`
+- [ ] Integrar servicio de email con **Mailtrap**:
+    - [ ] Instalar `nodemailer`
+    - [ ] Configurar credenciales de Mailtrap en `.env.local`
     - [ ] Crear template de email
-  - **Opción 2: SendGrid** (alternativa)
-  - **Opción 3: Nodemailer + Gmail** (gratis pero menos confiable)
 - [ ] Actualizar componente Contact:
   - [ ] Conectar formulario con Server Action
   - [ ] Manejar estados loading/success/error
@@ -202,7 +199,7 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
   - [ ] Reset form al enviar
 - [ ] Testing del formulario en desarrollo
 
-### Fase 7: Testing y Deploy
+### Fase 7: Testing Local
 - [ ] Testing local:
   - [ ] Navegación entre todas las páginas
   - [ ] Carga de imágenes optimizadas
@@ -217,20 +214,9 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
   - [ ] Lighthouse audit (objetivo: >90 en todas las métricas)
   - [ ] Core Web Vitals (LCP, FID, CLS)
   - [ ] Verificar bundle size
-- [ ] Setup deploy en Vercel:
-  - [ ] Crear cuenta y proyecto en Vercel
-  - [ ] Conectar repositorio de GitHub
-  - [ ] Configurar variables de entorno (RESEND_API_KEY, etc.)
-  - [ ] Deploy automático en push a main
-- [ ] Configuración de dominio:
-  - [ ] Configurar dominio personalizado (miguelbonifaz.dev)
-  - [ ] SSL automático
-  - [ ] Configurar DNS
-- [ ] Post-deploy:
-  - [ ] Verificar sitio en producción
-  - [ ] Probar formulario en producción
-  - [ ] Submit a Google Search Console
-  - [ ] Configurar Analytics (Vercel Analytics - gratis)
+- [ ] Configuración local final:
+  - [ ] Crear archivo `.env.local.example` con variables necesarias
+  - [ ] Documentar variables de entorno en README
 - [ ] Documentación:
   - [ ] README con instrucciones para actualizar contenido
   - [ ] Comentarios en archivos de datos
@@ -328,10 +314,9 @@ export const projects: Project[] = [
   - Code splitting automático por ruta
   - Tree shaking de componentes no usados
   - Lazy loading de imágenes
-- **Deployment**: Vercel (recomendado)
-  - Deploy automático en push
-  - Edge Network global
-  - Analytics gratis incluido
+- **Deployment**: Desarrollo local
+  - Build estático con `npm run build`
+  - Servidor local con `npm run start`
 
 ## Migración de Datos
 
@@ -368,7 +353,8 @@ export const projects: Project[] = [
 npx create-next-app@latest portfolio-nextjs --typescript --tailwind --app --no-src-dir
 
 # Instalar dependencias
-npm install zod lucide-react react-hook-form @hookform/resolvers resend react-hot-toast
+npm install zod lucide-react react-hook-form @hookform/resolvers nodemailer react-hot-toast
+npm install -D @types/nodemailer
 
 # Development
 npm run dev
@@ -376,8 +362,9 @@ npm run dev
 # Build
 npm run build
 
-# Deploy (después de conectar a Vercel)
-git push origin main  # Auto-deploy
+# Producción local
+npm run build
+npm run start
 ```
 
 ## Próximos Pasos
@@ -386,6 +373,10 @@ git push origin main  # Auto-deploy
 2. Comenzar Fase 1: Setup de Next.js 15
 3. Crear data layer con TypeScript
 4. Migrar componentes UI progresivamente
-5. Testing y deploy en Vercel
+5. Testing local
 
 **¿Listo para comenzar con Fase 1?** 🚀
+
+---
+
+**Nota:** Si tienes dudas sobre Next.js, TailwindCSS, Zod o cualquier tecnología usada, usa Context7 para consultar documentación actualizada.
