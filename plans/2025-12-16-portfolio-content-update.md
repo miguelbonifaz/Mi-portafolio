@@ -202,9 +202,9 @@ Esta página debe ser dinámica o tener variaciones para cada proyecto. Se neces
 
 ## Fase 8: Documentación
 
-- [ ] Crear README.md con información del proyecto
-- [ ] Documentar estructura del proyecto
-- [ ] Commit de cambios con mensaje descriptivo
+- [x] Crear README.md con información del proyecto
+- [x] Documentar estructura del proyecto
+- [x] Commit de cambios con mensaje descriptivo
 
 ---
 
