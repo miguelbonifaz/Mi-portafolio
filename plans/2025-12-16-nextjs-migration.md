@@ -9,6 +9,7 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 ## Arquitectura Propuesta
 
 ### Stack Tecnológico
+
 - **Framework**: Next.js 15 (App Router)
 - **Styling**: TailwindCSS 4.x
 - **Gestión de Contenido**: JSON Local + TypeScript
@@ -19,6 +20,7 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 ### Por qué JSON Local + TypeScript
 
 **Ventajas:**
+
 - Control total del contenido versionado en Git
 - Zero dependencies externas para contenido
 - Type-safety completo con TypeScript
@@ -30,6 +32,7 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 ## Fases de Implementación
 
 ### Fase 1: Setup de Next.js 15
+
 - [x] Crear nuevo proyecto Next.js 15 con App Router: `npx create-next-app@latest`
 - [x] Configurar TypeScript (incluido en create-next-app)
 - [x] Instalar y configurar TailwindCSS 4.x
@@ -82,116 +85,122 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
   ```
 
 ### Fase 2: Creación de Data Layer con TypeScript
-- [ ] Crear tipos TypeScript en `/data/types.ts`:
-  - [ ] `Profile` - Info personal, contacto, redes sociales
-  - [ ] `Experience` - Historial laboral
-  - [ ] `Skill` - Habilidades técnicas
-  - [ ] `Project` - Proyectos completos
-  - [ ] `Automation` - Agentes de automatización
-  - [ ] `SocialLink` - Enlaces a redes
-- [ ] Crear schemas de validación con Zod en `/data/schemas.ts`
-- [ ] Implementar archivos de datos:
-  - [ ] `/data/profile.ts` - Exporta objeto `profile` con info personal
-  - [ ] `/data/projects.ts` - Exporta array `projects` con todos los proyectos
-  - [ ] `/data/automations.ts` - Exporta array `automations` con agentes
-  - [ ] `/data/skills.ts` - Exporta arrays `experience` y `skills`
-- [ ] Crear helpers en `/data/index.ts`:
-  - [ ] `getProfile()` - Retorna perfil validado
-  - [ ] `getAllProjects()` - Retorna proyectos ordenados
-  - [ ] `getProjectBySlug(slug)` - Busca proyecto específico
-  - [ ] `getAutomations()` - Retorna automatizaciones
-- [ ] Validar todos los datos con Zod al importar
+
+- [x] Crear tipos TypeScript en `/data/types.ts`:
+  - [x] `Profile` - Info personal, contacto, redes sociales
+  - [x] `Experience` - Historial laboral
+  - [x] `Skill` - Habilidades técnicas
+  - [x] `Project` - Proyectos completos
+  - [x] `Automation` - Agentes de automatización
+  - [x] `SocialLink` - Enlaces a redes
+- [x] Crear schemas de validación con Zod en `/data/schemas.ts`
+- [x] Implementar archivos de datos:
+  - [x] `/data/profile.ts` - Exporta objeto `profile` con info personal
+  - [x] `/data/projects.ts` - Exporta array `projects` con todos los proyectos
+  - [x] `/data/automations.ts` - Exporta array `automations` con agentes
+  - [x] `/data/skills.ts` - Exporta arrays `experience` y `skills`
+- [x] Crear helpers en `/data/index.ts`:
+  - [x] `getProfile()` - Retorna perfil validado
+  - [x] `getAllProjects()` - Retorna proyectos ordenados
+  - [x] `getProjectBySlug(slug)` - Busca proyecto específico
+  - [x] `getAutomations()` - Retorna automatizaciones
+- [x] Validar todos los datos con Zod al importar
 
 ### Fase 3: Migración de Componentes UI
-- [ ] Crear layout principal (`app/layout.tsx`):
-  - [ ] Configurar fuentes con `next/font/google`
-  - [ ] Meta tags base
-  - [ ] Estilos globales de TailwindCSS
-- [ ] Crear componentes UI base:
-  - [ ] `Header.tsx` - Navegación sticky con clock
-  - [ ] `Footer.tsx` - Footer minimalista
-- [ ] Migrar Hero Section (`components/sections/Hero.tsx`):
-  - [ ] Implementar optimización de imagen con `next/image`
-  - [ ] Importar datos desde `data/profile`
-  - [ ] Mantener efectos visuales (clip-path, grayscale)
-  - [ ] Badge "Disponible para Trabajar"
-  - [ ] Links a redes sociales con iconos Lucide
-- [ ] Migrar About Section (`components/sections/About.tsx`):
-  - [ ] Importar experiencia desde `data/skills`
-  - [ ] Renderizar skills como pills dinámicos
-  - [ ] Layout con grid responsive
-- [ ] Migrar Works Section (`components/sections/Works.tsx`):
-  - [ ] Crear `ProjectCard.tsx` reutilizable
-  - [ ] Grid de proyectos desde `data/projects`
-  - [ ] Lazy loading de imágenes con `next/image`
-  - [ ] Hover effects y transiciones CSS
-  - [ ] Links a páginas de detalle
-- [ ] Migrar Automations Section (`components/sections/Automations.tsx`):
-  - [ ] Cards de agentes desde `data/automations`
-  - [ ] Iconos con Lucide React
-  - [ ] Badges de estado (En Vivo, En Desarrollo)
-- [ ] Migrar Contact Section (`components/sections/Contact.tsx`):
-  - [ ] Formulario con React Hook Form
-  - [ ] Validación con Zod
-  - [ ] Datos de contacto desde `data/profile`
+
+- [x] Crear layout principal (`app/layout.tsx`):
+  - [x] Configurar fuentes con `next/font/google`
+  - [x] Meta tags base
+  - [x] Estilos globales de TailwindCSS
+- [x] Crear componentes UI base:
+  - [x] `Header.tsx` - Navegación sticky con clock
+  - [x] `Footer.tsx` - Footer minimalista
+- [x] Migrar Hero Section (`components/sections/Hero.tsx`):
+  - [x] Implementar optimización de imagen con `next/image`
+  - [x] Importar datos desde `data/profile`
+  - [x] Mantener efectos visuales (clip-path, grayscale)
+  - [x] Badge "Disponible para Trabajar"
+  - [x] Links a redes sociales con iconos Lucide
+- [x] Migrar About Section (`components/sections/About.tsx`):
+  - [x] Importar experiencia desde `data/skills`
+  - [x] Renderizar skills como pills dinámicos
+  - [x] Layout con grid responsive
+- [x] Migrar Works Section (`components/sections/Works.tsx`):
+  - [x] Crear `ProjectCard.tsx` reutilizable
+  - [x] Grid de proyectos desde `data/projects`
+  - [x] Lazy loading de imágenes con `next/image`
+  - [x] Hover effects y transiciones CSS
+  - [x] Links a páginas de detalle
+- [x] Migrar Automations Section (`components/sections/Automations.tsx`):
+  - [x] Cards de agentes desde `data/automations`
+  - [x] Iconos con Lucide React
+  - [x] Badges de estado (En Vivo, En Desarrollo)
+- [x] Migrar Contact Section (`components/sections/Contact.tsx`):
+  - [x] Formulario con React Hook Form
+  - [x] Validación con Zod
+  - [x] Datos de contacto desde `data/profile`
 
 ### Fase 4: Páginas Dinámicas de Proyectos
-- [ ] Crear `/app/projects/[slug]/page.tsx`:
-  - [ ] Implementar `generateStaticParams()` usando `getAllProjects()`
-  - [ ] Implementar `generateMetadata()` para SEO dinámico
-  - [ ] Obtener proyecto con `getProjectBySlug(params.slug)`
-- [ ] Diseño de página de detalle:
-  - [ ] Hero con imagen principal y título
-  - [ ] Grid de información (año, tecnologías, categoría)
-  - [ ] Descripción larga del proyecto
-  - [ ] Galería de imágenes con `ProjectGallery.tsx`
-  - [ ] Stack tecnológico como pills
-  - [ ] Links a GitHub/Demo (condicional)
-  - [ ] CTA para contacto
-- [ ] Implementar navegación entre proyectos (Anterior/Siguiente)
-- [ ] Breadcrumbs con Link de Next.js
-- [ ] Página 404 personalizada si slug no existe
-- [ ] Migrar contenido de HTML a `/data/projects.ts`:
-  - [ ] bonifaz-peluqueros.html → objeto en projects array
-  - [ ] exchange.html → objeto en projects array
-  - [ ] segob.html → objeto en projects array
-  - [ ] sonata.html → objeto en projects array
-  - [ ] beaubella.html → objeto en projects array
+
+- [x] Crear `/app/projects/[slug]/page.tsx`:
+  - [x] Implementar `generateStaticParams()` usando `getAllProjects()`
+  - [x] Implementar `generateMetadata()` para SEO dinámico
+  - [x] Obtener proyecto con `getProjectBySlug(params.slug)`
+- [x] Diseño de página de detalle:
+  - [x] Hero con imagen principal y título
+  - [x] Grid de información (año, tecnologías, categoría)
+  - [x] Descripción larga del proyecto
+  - [x] Galería de imágenes con `ProjectGallery.tsx`
+  - [x] Stack tecnológico como pills
+  - [x] Links a GitHub/Demo (condicional)
+  - [x] CTA para contacto
+- [x] Implementar navegación entre proyectos (Anterior/Siguiente)
+- [x] Breadcrumbs con Link de Next.js
+- [x] Página 404 personalizada si slug no existe
+- [x] Migrar contenido de HTML a `/data/projects.ts`:
+  - [x] bonifaz-peluqueros.html → objeto en projects array
+  - [x] exchange.html → objeto en projects array
+  - [x] segob.html → objeto en projects array
+  - [x] sonata.html → objeto en projects array
+  - [x] beaubella.html → objeto en projects array
 
 ### Fase 5: SEO y Optimizaciones
-- [ ] Configurar Metadata API de Next.js 15:
-  - [ ] `metadata` object en `app/layout.tsx` (title, description, OG)
-  - [ ] `generateMetadata()` en `app/projects/[slug]/page.tsx`
-  - [ ] Open Graph images (usar imagen del proyecto)
-  - [ ] Twitter Cards metadata
-  - [ ] Canonical URLs
-- [ ] Crear `app/sitemap.ts`:
-  - [ ] Generar dinámicamente con `getAllProjects()`
-  - [ ] Incluir homepage, automations, y proyectos
-  - [ ] Configurar lastModified y changeFrequency
-- [ ] Crear `app/robots.ts` para SEO
-- [ ] Añadir JSON-LD para Schema.org:
-  - [ ] `Person` schema en homepage
-  - [ ] `WebSite` schema en layout
-  - [ ] `WebPage` schema en proyectos
-- [ ] Optimizar imágenes:
-  - [ ] Configurar `next.config.js` para optimización
-  - [ ] Usar `placeholder="blur"` con blurDataURL
-  - [ ] Definir sizes responsivos
-  - [ ] Lazy loading automático de next/image
-- [ ] Performance:
-  - [ ] Habilitar `output: 'export'` para SSG puro (opcional)
-  - [ ] Configurar `revalidate` en páginas si usas ISR
+
+- [x] Configurar Metadata API de Next.js 15:
+  - [x] `metadata` object en `app/layout.tsx` (title, description, OG)
+  - [x] `generateMetadata()` en `app/projects/[slug]/page.tsx`
+  - [x] Open Graph images (usar imagen del proyecto)
+  - [x] Twitter Cards metadata
+  - [x] Canonical URLs
+- [x] Crear `app/sitemap.ts`:
+  - [x] Generar dinámicamente con `getAllProjects()`
+  - [x] Incluir homepage, automations, y proyectos
+  - [x] Configurar lastModified y changeFrequency
+- [x] Crear `app/robots.ts` para SEO
+- [x] Añadir JSON-LD para Schema.org:
+  - [x] `Person` schema en homepage
+  - [x] `WebSite` schema en layout
+  - [x] `Article` schema en proyectos
+  - [x] `Breadcrumb` schema en proyectos
+- [x] Optimizar imágenes:
+  - [x] Configurar `next.config.ts` para optimización
+  - [x] Definir formats (AVIF, WebP)
+  - [x] Configurar deviceSizes y imageSizes
+  - [x] Lazy loading automático de next/image (ya implementado)
+- [x] Performance:
+  - [x] Comentario para habilitar `output: 'export'` para SSG puro
+  - [x] `force-static` configurado en páginas dinámicas
 
 ### Fase 6: Formulario de Contacto Funcional
+
 - [ ] Crear Server Action en `app/actions/contact.ts`:
   - [ ] Validar datos con Zod
   - [ ] Rate limiting simple (opcional)
   - [ ] Retornar success/error states
 - [ ] Integrar servicio de email con **Mailtrap**:
-    - [ ] Instalar `nodemailer`
-    - [ ] Configurar credenciales de Mailtrap en `.env.local`
-    - [ ] Crear template de email
+  - [ ] Instalar `nodemailer`
+  - [ ] Configurar credenciales de Mailtrap en `.env.local`
+  - [ ] Crear template de email
 - [ ] Actualizar componente Contact:
   - [ ] Conectar formulario con Server Action
   - [ ] Manejar estados loading/success/error
@@ -200,6 +209,7 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 - [ ] Testing del formulario en desarrollo
 
 ### Fase 7: Testing Local
+
 - [ ] Testing local:
   - [ ] Navegación entre todas las páginas
   - [ ] Carga de imágenes optimizadas
@@ -224,74 +234,76 @@ Migrar el portfolio actual (HTML estático con Vite/React) a **Next.js 15** (úl
 ## Estructura de Datos Propuesta
 
 ### Ejemplo de `/data/types.ts`:
+
 ```typescript
 export interface Profile {
-  name: string
-  title: string
-  bio: string
-  email: string
-  phone: string
-  location: string
-  image: string
-  availability: boolean
-  socials: SocialLink[]
+  name: string;
+  title: string;
+  bio: string;
+  email: string;
+  phone: string;
+  location: string;
+  image: string;
+  availability: boolean;
+  socials: SocialLink[];
 }
 
 export interface Project {
-  id: string
-  slug: string
-  title: string
-  shortDescription: string
-  longDescription: string
-  year: number
-  category: string
-  technologies: string[]
-  featured: boolean
+  id: string;
+  slug: string;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  year: number;
+  category: string;
+  technologies: string[];
+  featured: boolean;
   images: {
-    thumbnail: string
-    hero: string
-    gallery: string[]
-  }
+    thumbnail: string;
+    hero: string;
+    gallery: string[];
+  };
   links?: {
-    github?: string
-    live?: string
-    demo?: string
-  }
+    github?: string;
+    live?: string;
+    demo?: string;
+  };
 }
 
 export interface Automation {
-  id: string
-  name: string
-  description: string
-  features: string[]
-  status: 'live' | 'development' | 'planned'
-  icon: string
+  id: string;
+  name: string;
+  description: string;
+  features: string[];
+  status: "live" | "development" | "planned";
+  icon: string;
 }
 ```
 
 ### Ejemplo de `/data/projects.ts`:
+
 ```typescript
-import { Project } from './types'
+import { Project } from "./types";
 
 export const projects: Project[] = [
   {
-    id: '1',
-    slug: 'bonifaz-peluqueros',
-    title: 'Sistema de Gestión de Peluquería',
-    shortDescription: 'Agendamiento en Tiempo Real / Laravel + Vue.js',
-    longDescription: 'Sistema completo de gestión...',
+    id: "1",
+    slug: "bonifaz-peluqueros",
+    title: "Sistema de Gestión de Peluquería",
+    shortDescription: "Agendamiento en Tiempo Real / Laravel + Vue.js",
+    longDescription: "Sistema completo de gestión...",
     year: 2024,
-    category: 'Web Application',
-    technologies: ['Laravel', 'Vue.js', 'TailwindCSS'],
+    category: "Web Application",
+    technologies: ["Laravel", "Vue.js", "TailwindCSS"],
     featured: true,
     images: {
-      thumbnail: '/assets/images/projects/bonifazpeluqueros.com__(1).png',
-      hero: '/assets/images/projects/bonifazpeluqueros.com__(1).png',
-      gallery: []
-    }
-  }
+      thumbnail: "/assets/images/projects/bonifazpeluqueros.com__(1).png",
+      hero: "/assets/images/projects/bonifazpeluqueros.com__(1).png",
+      gallery: [],
+    },
+  },
   // ... más proyectos
-]
+];
 ```
 
 ## Notas Técnicas
@@ -321,6 +333,7 @@ export const projects: Project[] = [
 ## Migración de Datos
 
 ### Contenido a migrar desde HTML:
+
 1. **Información personal** (nombre, bio, ubicación, email)
 2. **Experiencia laboral** (3 posiciones)
 3. **Habilidades/Stack** (Laravel, Vue.js, Livewire, etc.)
@@ -329,22 +342,23 @@ export const projects: Project[] = [
 6. **Links y redes sociales**
 
 ### Assets:
+
 - Imágenes de proyectos en `assets/images/projects/`
 - Foto de perfil (placeholder actual de Unsplash)
 - Favicon y og-image
 
 ## Ventajas de JSON Local vs CMS Headless
 
-| Aspecto | JSON Local | Sanity/Contentful |
-|---------|------------|-------------------|
-| **Setup** | Inmediato | ~2 horas config |
-| **Costo** | $0 siempre | Gratis con límites |
-| **Velocidad build** | Instantáneo | Fetch API en build |
-| **Type Safety** | TypeScript nativo | SDK + tipos generados |
-| **Versionado** | Git directo | API + webhooks |
-| **Complejidad** | Mínima | Media |
-| **Migración futura** | Fácil a cualquier DB | Lock-in parcial |
-| **Ideal para** | Portfolios, sites estáticos | Equipos, multi-editor |
+| Aspecto              | JSON Local                  | Sanity/Contentful     |
+| -------------------- | --------------------------- | --------------------- |
+| **Setup**            | Inmediato                   | ~2 horas config       |
+| **Costo**            | $0 siempre                  | Gratis con límites    |
+| **Velocidad build**  | Instantáneo                 | Fetch API en build    |
+| **Type Safety**      | TypeScript nativo           | SDK + tipos generados |
+| **Versionado**       | Git directo                 | API + webhooks        |
+| **Complejidad**      | Mínima                      | Media                 |
+| **Migración futura** | Fácil a cualquier DB        | Lock-in parcial       |
+| **Ideal para**       | Portfolios, sites estáticos | Equipos, multi-editor |
 
 ## Comandos Clave
 
