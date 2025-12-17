@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Scissors, Building2, Bot, MessageSquare, Database, Zap, Check } from 'lucide-react'
+import { Scissors, Cake, Bot, MessageSquare, Database, Zap, Check } from 'lucide-react'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
 
@@ -87,30 +87,30 @@ export default function AutomationsPage() {
                 </ul>
               </div>
 
-              {/* Agent 2: Real Estate */}
+              {/* Agent 2: Dulce Sabor */}
               <div className="bg-white p-8 border border-gray-200 group hover:border-blue-400 hover:shadow-xl hover:shadow-blue-100 transition-all duration-300 relative overflow-hidden rounded-xl">
                 <div className="absolute top-4 right-4 text-gray-50 group-hover:text-blue-50 transition-colors">
-                  <Building2 className="w-24 h-24 stroke-[1px]" />
+                  <Cake className="w-24 h-24 stroke-[1px]" />
                 </div>
 
                 <div className="flex items-center space-x-2 mb-6 relative z-10">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  <span className="text-xs uppercase tracking-widest text-gray-400">Agente en Vivo</span>
+                  <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                  <span className="text-xs uppercase tracking-widest text-gray-400">En Desarrollo</span>
                 </div>
 
-                <h3 className="serif-font text-2xl text-gray-900 mb-2 relative z-10">Asistente Inmobiliario</h3>
+                <h3 className="serif-font text-2xl text-gray-900 mb-2 relative z-10">Dulce Sabor</h3>
                 <p className="text-sm text-gray-500 mb-6 min-h-[40px] relative z-10">
-                  Bot de calificación de leads que filtra compradores potenciales y programa visitas a propiedades al instante.
+                  Asistente virtual para pastelería que cotiza tortas personalizadas, informa sobre productos y gestiona disponibilidad.
                 </p>
 
                 <ul className="space-y-2 mb-8 relative z-10">
                   <li className="flex items-center text-xs text-gray-600">
                     <Check className="w-3 h-3 mr-2 text-blue-500" />
-                    Pre-calificación con Q&A
+                    Cotización de tortas personalizadas
                   </li>
                   <li className="flex items-center text-xs text-gray-600">
                     <Check className="w-3 h-3 mr-2 text-blue-500" />
-                    Integración CRM (HubSpot)
+                    Consulta de disponibilidad de fechas
                   </li>
                 </ul>
               </div>

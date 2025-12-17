@@ -5,29 +5,25 @@ import { z } from 'zod'
 const automationsData: Automation[] = [
   {
     id: '1',
-    name: 'Email Assistant',
-    description: 'Agente de IA que gestiona y responde correos automáticamente',
+    name: 'Bonifaz Peluqueros',
+    description: 'Bot de agendamiento de citas que gestiona sincronización de calendario, reprogramación y consultas del menú de servicios.',
     features: [
-      'Clasificación automática de emails',
-      'Respuestas inteligentes',
-      'Priorización de mensajes',
-      'Integración con Gmail',
+      'Reserva automática vía WhatsApp',
+      'Recordatorios para reducir ausencias',
     ],
     status: 'live',
-    icon: 'mail',
+    icon: 'scissors',
   },
   {
     id: '2',
-    name: 'Task Scheduler',
-    description: 'Automatización de tareas repetitivas y recordatorios',
+    name: 'Dulce Sabor',
+    description: 'Asistente virtual para pastelería que cotiza tortas personalizadas, informa sobre productos y gestiona disponibilidad.',
     features: [
-      'Programación de tareas',
-      'Recordatorios inteligentes',
-      'Integración con calendario',
-      'Notificaciones personalizadas',
+      'Cotización de tortas personalizadas',
+      'Consulta de disponibilidad de fechas',
     ],
     status: 'development',
-    icon: 'calendar',
+    icon: 'cake',
   },
 ]
 
