@@ -109,8 +109,6 @@ export default async function ProjectDetailPage({
             <div className="flex flex-col space-y-4 mb-12">
               <div className="flex items-center space-x-4 text-xs text-gray-400 uppercase tracking-widest flex-wrap">
                 <span>{project.category}</span>
-                <span>&mdash;</span>
-                <span>{project.year}</span>
               </div>
               <h1 className="text-4xl md:text-6xl lg:text-7xl serif-font text-gray-900 leading-tight">
                 {project.title}
@@ -137,14 +135,6 @@ export default async function ProjectDetailPage({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               {/* Sidebar Info */}
               <div className="md:col-span-3 space-y-8 sticky top-24 h-fit">
-                {/* Year */}
-                <div>
-                  <h3 className="text-gray-400 text-xs tracking-widest uppercase mb-2">
-                    Año
-                  </h3>
-                  <p className="text-sm text-gray-900">{project.year}</p>
-                </div>
-
                 {/* Category */}
                 <div>
                   <h3 className="text-gray-400 text-xs tracking-widest uppercase mb-2">
