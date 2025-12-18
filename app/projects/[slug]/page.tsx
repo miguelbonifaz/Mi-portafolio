@@ -1,38 +1,38 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowLeft, ExternalLink, Github, Calendar, Tag } from 'lucide-react'
-import { getAllProjects, getProjectBySlug, getProfile } from '@/data'
-import { getProjectNavigation } from '@/lib/project-navigation'
-import ProjectGallery from '@/components/projects/ProjectGallery'
-import Header from '@/components/ui/Header'
-import Footer from '@/components/ui/Footer'
-import JsonLd from '@/components/seo/JsonLd'
-import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/json-ld'
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, ExternalLink, Github, Calendar, Tag } from "lucide-react";
+import { getAllProjects, getProjectBySlug, getProfile } from "@/data";
+import { getProjectNavigation } from "@/lib/project-navigation";
+import ProjectGallery from "@/components/projects/ProjectGallery";
+import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
+import JsonLd from "@/components/seo/JsonLd";
+import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/json-ld";
 
-export const dynamic = 'force-static'
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
-  const projects = getAllProjects()
+  const projects = getAllProjects();
   return projects.map((project) => ({
     slug: project.slug,
-  }))
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params
-  const project = getProjectBySlug(slug)
-  const profile = getProfile()
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  const profile = getProfile();
 
   if (!project) {
     return {
-      title: 'Proyecto no encontrado',
-    }
+      title: "Proyecto no encontrado",
+    };
   }
 
   return {
@@ -41,22 +41,22 @@ export async function generateMetadata({
     keywords: [
       ...project.technologies,
       project.category,
-      'Miguel Bonifaz',
-      'Desarrollador Laravel',
+      "Miguel Bonifaz",
+      "Desarrollador Laravel",
     ],
-    authors: [{ name: 'Miguel Bonifaz' }],
+    authors: [{ name: "Miguel Bonifaz" }],
     alternates: {
       canonical: `/projects/${project.slug}`,
     },
     openGraph: {
-      type: 'article',
-      locale: 'es_ES',
+      type: "article",
+      locale: "es_ES",
       url: `/projects/${project.slug}`,
-      siteName: 'Miguel Bonifaz Portfolio',
+      siteName: "Miguel Bonifaz Portfolio",
       title: `${project.title} | Miguel Bonifaz`,
       description: project.shortDescription,
       publishedTime: `${project.year}-01-01T00:00:00.000Z`,
-      authors: ['Miguel Bonifaz'],
+      authors: ["Miguel Bonifaz"],
       images: [
         {
           url: project.images.hero,
@@ -67,35 +67,35 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: `${project.title} | Miguel Bonifaz`,
       description: project.shortDescription,
       images: [project.images.hero],
-      creator: '@miguelbonifaz',
+      creator: "@miguelbonifaz",
     },
-  }
+  };
 }
 
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params
-  const project = getProjectBySlug(slug)
-  const profile = getProfile()
-  const { previous, next } = getProjectNavigation(slug)
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  const profile = getProfile();
+  const { previous, next } = getProjectNavigation(slug);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
-  const articleSchema = generateArticleSchema(project)
+  const articleSchema = generateArticleSchema(project);
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Inicio', url: '/' },
-    { name: 'Proyectos', url: '/#works' },
+    { name: "Inicio", url: "/" },
+    { name: "Proyectos", url: "/#works" },
     { name: project.title, url: `/projects/${project.slug}` },
-  ])
+  ]);
 
   return (
     <>
@@ -150,10 +150,7 @@ export default async function ProjectDetailPage({
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="pill-badge text-xs"
-                      >
+                      <span key={tech} className="pill-badge text-xs">
                         {tech}
                       </span>
                     ))}
@@ -161,7 +158,9 @@ export default async function ProjectDetailPage({
                 </div>
 
                 {/* Links */}
-                {(project.links?.github || project.links?.live || project.links?.demo) && (
+                {(project.links?.github ||
+                  project.links?.live ||
+                  project.links?.demo) && (
                   <div>
                     <h3 className="text-gray-400 text-xs tracking-widest uppercase mb-2">
                       Enlaces
@@ -184,10 +183,12 @@ export default async function ProjectDetailPage({
                           href={project.links.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group inline-flex items-center space-x-2 text-xs text-gray-600 hover:text-black transition-colors"
+                          className="group inline-flex items-center space-x-2 text-xs transition-colors"
                         >
-                          <ExternalLink className="w-3 h-3" />
-                          <span>Sitio Web</span>
+                          <span className="px-3 py-1 border border-gray-200 rounded-full text-xs text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors">
+                            {project.links.live}
+                          </span>
+                          <ExternalLink className="w-3 h-3 text-gray-600 group-hover:text-black opacity-0 group-hover:opacity-100 transition-opacity" />
                         </a>
                       )}
                       {project.links?.demo && (
@@ -225,16 +226,22 @@ export default async function ProjectDetailPage({
                     {project.shortDescription}
                   </h2>
                   <div className="space-y-6 text-sm md:text-base text-gray-600 leading-relaxed font-light">
-                    {project.longDescription.split('\n').map((paragraph, index) => (
-                      <p key={index}>{paragraph.trim()}</p>
-                    ))}
+                    {project.longDescription
+                      .split("\n")
+                      .map((paragraph, index) => (
+                        <p key={index}>{paragraph.trim()}</p>
+                      ))}
                   </div>
                 </div>
 
                 {/* Gallery */}
-                {project.images.gallery && project.images.gallery.length > 0 && (
-                  <ProjectGallery images={project.images.gallery} projectTitle={project.title} />
-                )}
+                {project.images.gallery &&
+                  project.images.gallery.length > 0 && (
+                    <ProjectGallery
+                      images={project.images.gallery}
+                      projectTitle={project.title}
+                    />
+                  )}
               </div>
             </div>
           </div>
@@ -246,7 +253,10 @@ export default async function ProjectDetailPage({
             <div className="flex justify-between items-center">
               {/* Previous Project */}
               {previous ? (
-                <Link href={`/projects/${previous.slug}`} className="group text-left">
+                <Link
+                  href={`/projects/${previous.slug}`}
+                  className="group text-left"
+                >
                   <span className="block text-xs text-gray-400 uppercase tracking-widest mb-1 group-hover:text-black transition-colors">
                     Anterior
                   </span>
@@ -260,7 +270,10 @@ export default async function ProjectDetailPage({
 
               {/* Next Project */}
               {next ? (
-                <Link href={`/projects/${next.slug}`} className="group text-right">
+                <Link
+                  href={`/projects/${next.slug}`}
+                  className="group text-right"
+                >
                   <span className="block text-xs text-gray-400 uppercase tracking-widest mb-1 group-hover:text-black transition-colors">
                     Siguiente
                   </span>
@@ -295,6 +308,5 @@ export default async function ProjectDetailPage({
       </main>
       <Footer />
     </>
-  )
+  );
 }
-
