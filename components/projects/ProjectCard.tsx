@@ -14,9 +14,9 @@ export default function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group cursor-pointer block ${className}`}
+      className={`group cursor-pointer block hover-lift ${className}`}
     >
-      <div className="bg-gray-100 overflow-hidden mb-4">
+      <div className="bg-gray-100 overflow-hidden mb-4 rounded-sm">
         <Image
           src={project.images.thumbnail}
           alt={project.title}
@@ -26,10 +26,10 @@ export default function ProjectCard({
         />
       </div>
       <div>
-        <h3 className="serif-font text-xl text-gray-900 mb-1 group-hover:underline decoration-1 underline-offset-4">
+        <h3 className="serif-font text-xl text-gray-900 mb-1 smooth-color group-hover:text-black relative inline-block link-underline">
           {project.title}
         </h3>
-        <p className="text-xs text-gray-500">{project.shortDescription}</p>
+        <p className="text-xs text-gray-500 smooth-color group-hover:text-gray-700">{project.shortDescription}</p>
       </div>
     </Link>
   );

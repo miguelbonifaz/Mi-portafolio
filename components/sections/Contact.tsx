@@ -7,6 +7,7 @@ import { useFormStatus } from 'react-dom'
 import { submitContactForm, type ContactFormState } from '@/app/actions/contact'
 import { useEffect, useRef } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -15,7 +16,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="mt-4 px-6 py-3 bg-gray-900 text-white text-xs uppercase tracking-widest hover:bg-gray-700 transition-colors w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      className="mt-4 px-6 py-3 bg-gray-900 text-white text-xs uppercase tracking-widest smooth-color hover:bg-gray-700 hover-lift w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
     >
       {pending ? (
         <>
@@ -35,6 +36,7 @@ export default function Contact() {
     null
   )
   const formRef = useRef<HTMLFormElement>(null)
+  const { ref, isVisible } = useScrollAnimation()
 
   useEffect(() => {
     if (state?.success) {
@@ -62,11 +64,11 @@ export default function Contact() {
   return (
     <>
       <Toaster />
-      <section id="contact" className="w-full thin-border-top bg-white">
+      <section id="contact" className="w-full thin-border-top bg-white" ref={ref}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             {/* Label Column */}
-            <div className="md:col-span-3 text-gray-400 text-xs tracking-widest uppercase">
+            <div className={`md:col-span-3 text-gray-400 text-xs tracking-widest uppercase transition-all duration-600 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
               (04) &mdash; Contacto
             </div>
 
@@ -75,10 +77,10 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 {/* Contact Form */}
                 <div className="space-y-8">
-                  <h2 className="serif-font text-3xl text-gray-800">
+                  <h2 className={`serif-font text-3xl text-gray-800 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0 translate-y-5'}`}>
                     Comencemos un proyecto
                   </h2>
-                  <form ref={formRef} action={formAction} className="space-y-6">
+                  <form ref={formRef} action={formAction} className={`space-y-6 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0 translate-y-5'}`}>
                     <div className="space-y-1">
                       <label
                         htmlFor="name"
@@ -90,7 +92,7 @@ export default function Contact() {
                         type="text"
                         id="name"
                         name="name"
-                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 transition-colors bg-transparent font-light"
+                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light"
                         placeholder="Tu nombre"
                         required
                       />
@@ -111,7 +113,7 @@ export default function Contact() {
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 transition-colors bg-transparent font-light"
+                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light"
                         placeholder="tu@ejemplo.com"
                         required
                       />
@@ -132,7 +134,7 @@ export default function Contact() {
                         id="message"
                         name="message"
                         rows={3}
-                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 transition-colors bg-transparent font-light resize-none"
+                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light resize-none"
                         placeholder="Cuéntame sobre tu proyecto..."
                         required
                       ></textarea>
@@ -147,7 +149,7 @@ export default function Contact() {
                 </div>
 
                 {/* Socials & Info */}
-                <div className="space-y-12 md:pt-16">
+                <div className={`space-y-12 md:pt-16 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0 translate-y-5'}`}>
                 <div>
                   <h3 className="font-bold mb-4 text-xs uppercase tracking-wide text-gray-400">
                     Redes Sociales
@@ -157,9 +159,9 @@ export default function Contact() {
                       <Link
                         href="https://www.linkedin.com/in/miguelbonifaz126/"
                         target="_blank"
-                        className="flex items-center space-x-3 text-gray-600 hover:text-black transition-colors group"
+                        className="flex items-center space-x-3 text-gray-600 smooth-color hover:text-black group"
                       >
-                        <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors" />
+                        <Linkedin className="w-5 h-5 text-gray-400 smooth-color group-hover:text-black hover-scale" />
                         <span className="text-sm">LinkedIn</span>
                       </Link>
                     </li>
@@ -167,7 +169,7 @@ export default function Contact() {
                       <Link
                         href="https://x.com/MBonifaz126"
                         target="_blank"
-                        className="flex items-center space-x-3 text-gray-600 hover:text-black transition-colors group"
+                        className="flex items-center space-x-3 text-gray-600 smooth-color hover:text-black group"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +181,7 @@ export default function Contact() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors"
+                          className="w-5 h-5 text-gray-400 smooth-color group-hover:text-black hover-scale"
                         >
                           <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
                           <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
@@ -191,9 +193,9 @@ export default function Contact() {
                       <Link
                         href="https://wa.me/593968204300"
                         target="_blank"
-                        className="flex items-center space-x-3 text-gray-600 hover:text-black transition-colors group"
+                        className="flex items-center space-x-3 text-gray-600 smooth-color hover:text-black group"
                       >
-                        <MessageCircle className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors" />
+                        <MessageCircle className="w-5 h-5 text-gray-400 smooth-color group-hover:text-black hover-scale" />
                         <span className="text-sm">WhatsApp</span>
                       </Link>
                     </li>

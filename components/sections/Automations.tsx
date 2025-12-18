@@ -1,8 +1,12 @@
+'use client'
+
 import Link from 'next/link'
 import { Scissors, Cake, Check, ArrowUpRight } from 'lucide-react'
 import { automations } from '@/data/automations'
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 export default function Automations() {
+  const { ref, isVisible } = useScrollAnimation()
   const getStatusBadge = (status: string) => {
     if (status === 'live') {
       return (
@@ -36,21 +40,21 @@ export default function Automations() {
   }
 
   return (
-    <section id="automations" className="w-full thin-border-top bg-gray-50/50">
+    <section id="automations" className="w-full thin-border-top bg-gray-50/50" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Label Column */}
-          <div className="md:col-span-3 text-gray-400 text-xs tracking-widest uppercase">
+          <div className={`md:col-span-3 text-gray-400 text-xs tracking-widest uppercase transition-all duration-600 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
             (03) &mdash; Automatizaciones
           </div>
 
           {/* Content Column */}
           <div className="md:col-span-9">
             <div className="mb-12">
-              <h2 className="serif-font text-3xl md:text-4xl text-gray-900 mb-4">
+              <h2 className={`serif-font text-3xl md:text-4xl text-gray-900 mb-4 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0 translate-y-5'}`}>
                 Agentes de IA Conversacional
               </h2>
-              <p className="text-sm md:text-base text-gray-600 font-light max-w-2xl leading-relaxed">
+              <p className={`text-sm md:text-base text-gray-600 font-light max-w-2xl leading-relaxed transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0 translate-y-5'}`}>
                 Además del desarrollo web, creo agentes inteligentes de WhatsApp que
                 automatizan operaciones comerciales. Desde agendamiento hasta calificación
                 de leads, estos bots trabajan 24/7.
@@ -59,8 +63,8 @@ export default function Automations() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Agent 1: Bonifaz Peluqueros */}
-              <div className="bg-white p-8 border border-gray-200 group hover:border-gray-400 transition-colors relative overflow-hidden">
-                <div className="absolute top-4 right-4 text-gray-100 group-hover:text-gray-200 transition-colors">
+              <div className={`bg-white p-8 border border-gray-200 group smooth-color hover:border-gray-400 relative overflow-hidden hover-lift transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0 translate-y-5'}`}>
+                <div className="absolute top-4 right-4 text-gray-100 smooth-color group-hover:text-gray-200">
                   <Scissors className="w-12 h-12 stroke-[1px]" />
                 </div>
 
@@ -92,16 +96,16 @@ export default function Automations() {
 
                 <Link
                   href="/automations#agents"
-                  className="inline-flex items-center text-xs uppercase tracking-widest text-black border-b border-black pb-1 hover:opacity-60 transition-opacity"
+                  className="inline-flex items-center text-xs uppercase tracking-widest text-black border-b border-black pb-1 smooth-color hover:opacity-60"
                 >
                   Ver Flujo Lógico
-                  <ArrowUpRight className="w-3 h-3 ml-1" />
+                  <ArrowUpRight className="w-3 h-3 ml-1 smooth-color group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </div>
 
               {/* Agent 2: Dulce Sabor */}
-              <div className="bg-white p-8 border border-gray-200 group hover:border-gray-400 transition-colors relative overflow-hidden">
-                <div className="absolute top-4 right-4 text-gray-100 group-hover:text-gray-200 transition-colors">
+              <div className={`bg-white p-8 border border-gray-200 group smooth-color hover:border-gray-400 relative overflow-hidden hover-lift transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-400' : 'opacity-0 translate-y-5'}`}>
+                <div className="absolute top-4 right-4 text-gray-100 smooth-color group-hover:text-gray-200">
                   <Cake className="w-12 h-12 stroke-[1px]" />
                 </div>
 
@@ -131,10 +135,10 @@ export default function Automations() {
 
                 <Link
                   href="/automations#agents"
-                  className="inline-flex items-center text-xs uppercase tracking-widest text-black border-b border-black pb-1 hover:opacity-60 transition-opacity"
+                  className="inline-flex items-center text-xs uppercase tracking-widest text-black border-b border-black pb-1 smooth-color hover:opacity-60 group"
                 >
                   Ver Flujo Lógico
-                  <ArrowUpRight className="w-3 h-3 ml-1" />
+                  <ArrowUpRight className="w-3 h-3 ml-1 smooth-color group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </div>
             </div>
