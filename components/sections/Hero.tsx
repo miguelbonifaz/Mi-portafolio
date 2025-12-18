@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Twitter } from "lucide-react";
+import { Linkedin, X } from "lucide-react";
 import { profile } from "@/data/profile";
 
 export default function Hero() {
@@ -51,7 +51,7 @@ export default function Hero() {
               target="_blank"
               className="text-gray-600 hover:text-black smooth-color hover-scale"
             >
-              <Twitter className="w-5 h-5" />
+              <X className="w-5 h-5" />
             </Link>
             <Link href="#contact" className="pill-badge hover:no-underline hover-lift">
               Disponible para Trabajar

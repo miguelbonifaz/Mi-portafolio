@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Linkedin, Twitter, Sparkles, Menu, X } from "lucide-react";
+import { Sparkles, Menu, X } from "lucide-react";
 
 export default function Header() {
   const [currentTime, setCurrentTime] = useState("");
