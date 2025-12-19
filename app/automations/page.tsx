@@ -1,16 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { Scissors, Cake, Bot, MessageSquare, Database, Zap, Check, ArrowRight } from 'lucide-react'
+import { Bot, MessageSquare, Database, Zap } from 'lucide-react'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { getAutomations } from '@/data'
-
-const IconMap = {
-  scissors: Scissors,
-  cake: Cake,
-}
+import AutomationCard from '@/components/sections/AutomationCard'
 
 export default function AutomationsPage() {
   const agentsSection = useScrollAnimation()
@@ -65,55 +61,15 @@ export default function AutomationsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {automations.map((automation, index) => {
-                const IconComponent = IconMap[automation.icon as keyof typeof IconMap] || Bot
-
-                return (
-                  <Link
-                    key={automation.id}
-                    href={`/automations/${automation.slug}`}
-                    className={`block bg-white p-8 border border-gray-200 group hover:border-blue-400 hover:shadow-xl hover:shadow-blue-100 transition-all duration-600 relative overflow-hidden rounded-xl hover-lift ${agentsSection.isVisible ? `animate-fade-in-up delay-${(index + 2) * 100}` : 'opacity-0 translate-y-5'}`}
-                  >
-                    <div className="absolute top-4 right-4 text-gray-50 group-hover:text-blue-50 transition-colors">
-                      <IconComponent className="w-24 h-24 stroke-[1px]" />
-                    </div>
-
-                    <div className="flex items-center space-x-2 mb-6 relative z-10">
-                      {automation.status === 'live' ? (
-                        <>
-                          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                          <span className="text-xs uppercase tracking-widest text-gray-400">Agente en Vivo</span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
-                          <span className="text-xs uppercase tracking-widest text-gray-400">En Desarrollo</span>
-                        </>
-                      )}
-                    </div>
-
-                    <h3 className="serif-font text-2xl text-gray-900 mb-2 relative z-10 group-hover:text-blue-600 transition-colors">
-                      {automation.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-6 min-h-[40px] relative z-10">
-                      {automation.shortDescription}
-                    </p>
-
-                    <ul className="space-y-2 mb-8 relative z-10">
-                      {automation.features.slice(0, 2).map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-xs text-gray-600">
-                          <Check className="w-3 h-3 mr-2 text-blue-500" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="relative z-10 inline-flex items-center text-xs uppercase tracking-widest text-blue-600 font-bold group-hover:underline">
-                      Ver Detalles <ArrowRight className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </Link>
-                )
-              })}
+              {automations.map((automation, index) => (
+                <AutomationCard
+                  key={automation.id}
+                  automation={automation}
+                  index={index + 2}
+                  isVisible={agentsSection.isVisible}
+                  href={`/automations/${automation.slug}`}
+                />
+              ))}
             </div>
           </div>
         </section>
