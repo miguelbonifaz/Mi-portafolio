@@ -2,15 +2,9 @@
 
 import { z } from 'zod'
 import nodemailer from 'nodemailer'
+import { contactFormSchema } from '@/data/schemas'
 
-// Contact form schema
-const contactSchema = z.object({
-  name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
-  email: z.string().email('Email inválido'),
-  message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres'),
-})
-
-export type ContactFormData = z.infer<typeof contactSchema>
+export type ContactFormData = z.infer<typeof contactFormSchema>
 
 export type ContactFormState = {
   success: boolean
@@ -59,7 +53,7 @@ export async function submitContactForm(
     }
 
     // Validate data
-    const validationResult = contactSchema.safeParse(data)
+    const validationResult = contactFormSchema.safeParse(data)
 
     if (!validationResult.success) {
       return {

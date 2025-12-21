@@ -1,21 +1,23 @@
 'use client'
 
 import Link from 'next/link'
-import { Linkedin, MessageCircle, Loader2 } from 'lucide-react'
+import { Linkedin, MessageCircle, Loader2, CheckCircle2 } from 'lucide-react'
 import { useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { submitContactForm, type ContactFormState } from '@/app/actions/contact'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+import { useFormValidation } from '@/hooks/useFormValidation'
+import { contactFormSchema } from '@/data/schemas'
 
-function SubmitButton() {
+function SubmitButton({ isValid }: { isValid: boolean }) {
   const { pending } = useFormStatus()
 
   return (
     <button
       type="submit"
-      disabled={pending}
+      disabled={pending || !isValid}
       className="mt-4 px-6 py-3 bg-gray-900 text-white text-xs uppercase tracking-widest smooth-color hover:bg-gray-700 hover-lift w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
     >
       {pending ? (
@@ -37,9 +39,30 @@ export default function Contact() {
   )
   const formRef = useRef<HTMLFormElement>(null)
   const { ref, isVisible } = useScrollAnimation()
+  const { validateField, setFieldTouched, getFieldError, hasFieldError, isFieldTouched, clearErrors } = useFormValidation(contactFormSchema)
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  // Character counter for message
+  const messageLength = formData.message.length
+  const minMessageLength = 10
+
+  // Check if form is valid
+  const isFormValid = formData.name.length >= 2 &&
+                      formData.email.includes('@') &&
+                      formData.message.length >= 10 &&
+                      !hasFieldError('name') &&
+                      !hasFieldError('email') &&
+                      !hasFieldError('message')
 
   useEffect(() => {
     if (state?.success) {
+      setShowSuccess(true)
       toast.success(state.message, {
         duration: 5000,
         position: 'bottom-right',
@@ -49,6 +72,11 @@ export default function Contact() {
         },
       })
       formRef.current?.reset()
+      setFormData({ name: '', email: '', message: '' })
+      clearErrors()
+
+      // Hide success animation after 2 seconds
+      setTimeout(() => setShowSuccess(false), 2000)
     } else if (state?.success === false && !state.errors) {
       toast.error(state.message, {
         duration: 5000,
@@ -59,7 +87,37 @@ export default function Contact() {
         },
       })
     }
-  }, [state])
+  }, [state, clearErrors])
+
+  const handleBlur = (field: 'name' | 'email' | 'message') => {
+    setFieldTouched(field)
+    validateField(field, formData[field])
+  }
+
+  const handleChange = (field: 'name' | 'email' | 'message', value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+
+    // Validate on change if field has been touched
+    if (isFieldTouched(field)) {
+      validateField(field, value)
+    }
+  }
+
+  const getInputClassName = (field: 'name' | 'email' | 'message') => {
+    const baseClass = "w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light"
+
+    if (!isFieldTouched(field)) return baseClass
+
+    if (hasFieldError(field)) {
+      return `${baseClass} input-invalid animate-shake`
+    }
+
+    if (formData[field].length > 0) {
+      return `${baseClass} input-valid`
+    }
+
+    return baseClass
+  }
 
   return (
     <>
@@ -80,7 +138,12 @@ export default function Contact() {
                   <h2 className={`serif-font text-3xl text-gray-800 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0 translate-y-5'}`}>
                     Comencemos un proyecto
                   </h2>
-                  <form ref={formRef} action={formAction} className={`space-y-6 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0 translate-y-5'}`}>
+                  <form
+                    ref={formRef}
+                    action={formAction}
+                    className={`space-y-6 transition-all duration-600 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0 translate-y-5'} ${showSuccess ? 'animate-success-pulse' : ''}`}
+                  >
+                    {/* Name Field */}
                     <div className="space-y-1">
                       <label
                         htmlFor="name"
@@ -92,16 +155,21 @@ export default function Contact() {
                         type="text"
                         id="name"
                         name="name"
-                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light"
+                        value={formData.name}
+                        onChange={(e) => handleChange('name', e.target.value)}
+                        onBlur={() => handleBlur('name')}
+                        className={getInputClassName('name')}
                         placeholder="Tu nombre"
                         required
                       />
-                      {state?.errors?.name && (
-                        <p className="text-xs text-red-500 mt-1">
-                          {state.errors.name[0]}
+                      {(getFieldError('name') || state?.errors?.name) && (
+                        <p className="text-xs text-red-500 mt-1 animate-error-slide">
+                          {getFieldError('name') || state?.errors?.name?.[0]}
                         </p>
                       )}
                     </div>
+
+                    {/* Email Field */}
                     <div className="space-y-1">
                       <label
                         htmlFor="email"
@@ -113,38 +181,57 @@ export default function Contact() {
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light"
+                        value={formData.email}
+                        onChange={(e) => handleChange('email', e.target.value)}
+                        onBlur={() => handleBlur('email')}
+                        className={getInputClassName('email')}
                         placeholder="tu@ejemplo.com"
                         required
                       />
-                      {state?.errors?.email && (
-                        <p className="text-xs text-red-500 mt-1">
-                          {state.errors.email[0]}
+                      {(getFieldError('email') || state?.errors?.email) && (
+                        <p className="text-xs text-red-500 mt-1 animate-error-slide">
+                          {getFieldError('email') || state?.errors?.email?.[0]}
                         </p>
                       )}
                     </div>
+
+                    {/* Message Field */}
                     <div className="space-y-1">
-                      <label
-                        htmlFor="message"
-                        className="text-xs text-gray-400 uppercase tracking-wide"
-                      >
-                        Mensaje
-                      </label>
+                      <div className="flex justify-between items-center">
+                        <label
+                          htmlFor="message"
+                          className="text-xs text-gray-400 uppercase tracking-wide"
+                        >
+                          Mensaje
+                        </label>
+                        <span className={`text-xs ${messageLength >= minMessageLength ? 'text-green-600' : 'text-gray-400'} transition-colors`}>
+                          {messageLength}/{minMessageLength}
+                        </span>
+                      </div>
                       <textarea
                         id="message"
                         name="message"
                         rows={3}
-                        className="w-full border-b border-gray-200 py-2 text-gray-800 focus:outline-none focus:border-gray-800 smooth-color bg-transparent font-light resize-none"
+                        value={formData.message}
+                        onChange={(e) => handleChange('message', e.target.value)}
+                        onBlur={() => handleBlur('message')}
+                        className={getInputClassName('message') + ' resize-none'}
                         placeholder="Cuéntame sobre tu proyecto..."
                         required
                       ></textarea>
-                      {state?.errors?.message && (
-                        <p className="text-xs text-red-500 mt-1">
-                          {state.errors.message[0]}
+                      {(getFieldError('message') || state?.errors?.message) && (
+                        <p className="text-xs text-red-500 mt-1 animate-error-slide">
+                          {getFieldError('message') || state?.errors?.message?.[0]}
                         </p>
                       )}
                     </div>
-                    <SubmitButton />
+
+                    <div className="flex items-center gap-3">
+                      <SubmitButton isValid={isFormValid} />
+                      {showSuccess && (
+                        <CheckCircle2 className="w-6 h-6 text-green-600 animate-checkmark" />
+                      )}
+                    </div>
                   </form>
                 </div>
 
