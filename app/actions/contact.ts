@@ -77,8 +77,11 @@ export async function submitContactForm(
     const webhookUrl = process.env.N8N_WEBHOOK_URL;
     const webhookToken = process.env.N8N_WEBHOOK_TOKEN;
 
+    console.log('Webhook URL exists:', !!webhookUrl);
+    console.log('Webhook Token exists:', !!webhookToken);
+
     if (!webhookUrl || !webhookToken) {
-      throw new Error('Webhook configuration missing');
+      throw new Error('Webhook configuration missing - check environment variables in Vercel');
     }
 
     const response = await fetch(webhookUrl, {
@@ -94,9 +97,13 @@ export async function submitContactForm(
       }),
     });
 
+    console.log('Webhook response status:', response.status);
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Webhook error response:', errorText);
       throw new Error(
-        `Webhook failed: ${response.status} ${response.statusText}`
+        `Webhook failed: ${response.status} ${response.statusText} - ${errorText}`
       );
     }
 
