@@ -102,7 +102,7 @@ export default async function AutomationDetailPage({
                 {automation.shortDescription}
               </p>
 
-              {automation.cta && (
+              {/* {automation.cta && (
                 <div className="pt-4">
                   <a
                     href={automation.cta.url}
@@ -114,7 +114,7 @@ export default async function AutomationDetailPage({
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </a>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </section>
